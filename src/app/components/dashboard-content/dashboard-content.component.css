@@ -1,0 +1,146 @@
+.container-fluid p {
+    margin: 0px;
+}
+.row h1 {
+    font-size: 24px;
+}
+
+.search input {
+    border-radius: 25px;
+    border: none;
+    padding: 4px 40px;
+    width: 400px;
+}
+
+.search span {
+    position: absolute;
+    padding: 0px 14px;
+}
+
+.search .col:nth-child(n + 2) i {
+    font-size: 20px;
+}
+
+.cards p {
+    margin: 0px;
+}
+
+i {
+    font-size: 20px;
+}
+
+.cards>div {
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.cards>div:nth-child(n + 2) {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.account-card {
+    background-color: #000000;
+    color: #A0A0A0;
+}
+
+.revenue-card .row {
+    height: 100%;
+}
+
+.cards-operations-content {
+    height: 54px;
+}
+
+.expense-card .row {
+    height: 100%;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 300;
+    color: #A0A0A0;
+}
+
+.subtitle {
+    font-weight: bold;
+}
+
+.card-info:nth-child(1) .subtitle {
+    font-size: 18px;
+}
+
+.card-info:nth-child(3) .subtitle {
+    font-size: 14px;
+}
+
+.charts .border-chart>div {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.cash-inflow {
+    color: #519C8A;
+}
+
+.cash-outflow {
+    color: #DF5862;
+}
+
+.status-completed {
+    color: #83b8aa;
+    font-weight: bold;
+}
+
+.status-canceled {
+    color: #D4AEAE;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #D0CFD4;
+    font-weight: bold;
+}
+
+.options {
+    cursor: pointer;
+}
+.pagination i {
+    cursor: pointer;
+}
+.pagination-options {
+    display: flex;
+    align-items: center;
+}
+
+@media(max-width: 1110px) {
+    .cards >div {
+        width: 45%;
+    }
+    .expense-card {
+        max-width: 45%;
+        margin-top: 10px;
+        height: 180px;
+    }
+    .search input {
+        width: 300px;
+    }
+}
+@media(max-width: 1030px) {
+    .search {
+        display: none;
+    }
+}
+@media(max-width: 895px) {
+    .cards >div {
+        width: 100%;
+        height: 180px;
+        margin-top: 10px;
+    }
+    .expense-card {
+        max-width: 100%;
+    }
+}

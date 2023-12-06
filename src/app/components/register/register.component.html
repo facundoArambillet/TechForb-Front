@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <section>
+        <div class="row">
+            <article class="col">
+                <div class="title">
+                    <h1>Registro de <span class="outstanding">Unicomer</span></h1>
+                </div>
+            </article>
+            <article class="col register">
+                <div class="container">
+                    <div class="logo">
+                        <img src="./assets/techforb-icon-300-200.png" alt="" width="250px">
+                    </div>
+                    <div class="form-register">
+                        <form method="POST" (ngSubmit)="register()">
+                            <div class="mb-3">
+                                <label class="form-label">Tipo de documento</label>
+                                <select class="form-select form-inputs mt-1" name="documentType" id="documentType">
+                                    <option *ngFor="let documentType of documentTypes"> {{ documentType.type }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputDocument" class="form-label">Numero de documento</label>
+                                <input type="number" class="form-control form-inputs mt-1" id="inputDocument"
+                                    [(ngModel)]="userDocument" name="inputDocument">
+                                    <!-- <div class="hidden" *ngIf="userDocument == undefined">
+                                        <p>El numero de documento no puede estar vacio</p>
+                                    </div> -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control form-inputs mt-1" id="inputName"
+                                    [(ngModel)]="userName" name="inputName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputLastname" class="form-label">Apellido</label>
+                                <input type="text" class="form-control form-inputs mt-1" id="inputLastname"
+                                    [(ngModel)]="userLastname" name="inputLastname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Clave</label>
+                                <input type="password" class="form-control form-inputs mt-1" id="inputPassword"
+                                    [(ngModel)]="userPassword" name="inputPassword" (change)="setPasswordsMatchs()">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputRepeatPassword" class="form-label">Repita la Clave</label>
+                                <input type="password" class="form-control form-inputs mt-1" id="inputRepeatPassword"
+                                    [(ngModel)]="userRepeatPassword" name="inputRepeatPassword" (change)="setPasswordsMatchs()">
+                                <div class="hidden" *ngIf="!passwordsEquals">
+                                    <p>Las contraseñas deben coincidir</p>
+                                </div>
+                            </div>
+                            <div class="btn-action">
+                                <button type="submit" class="btn">Ingresar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="virtual-keybord">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-keyboard" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM2 4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
+                                <path
+                                    d="M13 10.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm0-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm-5 0A.25.25 0 0 1 8.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 8 8.75zm2 0a.25.25 0 0 1 .25-.25h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5a.25.25 0 0 1-.25-.25zm1 2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm-5-2A.25.25 0 0 1 6.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 6 8.75zm-2 0A.25.25 0 0 1 4.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 4 8.75zm-2 0A.25.25 0 0 1 2.25 8h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 8.75zm11-2a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm-2 0a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm-2 0A.25.25 0 0 1 9.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 9 6.75zm-2 0A.25.25 0 0 1 7.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 7 6.75zm-2 0A.25.25 0 0 1 5.25 6h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 5 6.75zm-3 0A.25.25 0 0 1 2.25 6h1.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-1.5A.25.25 0 0 1 2 6.75zm0 4a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm2 0a.25.25 0 0 1 .25-.25h5.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-5.5a.25.25 0 0 1-.25-.25z" />
+                            </svg>
+                        </div>
+                        <div class="ms-2">
+                            <p>Teclado Virtual</p>
+                        </div>
+                    </div>
+                    <div class="login-option">
+                        <p>¿Ya posees cuenta? <a [routerLink]="['/']">Inicia aqui</a></p>
+                    </div>
+                </div>
+
+            </article>
+        </div>
+    </section>
+</div>

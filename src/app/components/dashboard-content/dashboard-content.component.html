@@ -1,0 +1,217 @@
+<div class="container-fluid">
+    <div class="row vh-100 p-r-15 p-l-15">
+        <div class="col-12 mt-4 search">
+            <div class="row">
+                <div class="col">
+                    <span>
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" name="" id="" placeholder="Busca aqui">
+                </div>
+                <div class="col d-flex justify-content-end align-items-center">
+                    <div class="search-item me-4">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <div class="search-item me-4">
+                        <i class="bi bi-bell"></i>
+                    </div>
+                    <div class="search-item me-4">
+                        Image
+                    </div>
+                    <div class="search-item me-4">
+                        {{cardholder}}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 mt-3">
+            <div>
+                <h1>inicio</h1>
+            </div>
+            <div class="row cards">
+                <div class="col-4 ms-2 account-card">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row justify-content-between card-info">
+                                <div class="col-5">
+                                    <div>
+                                        <p class="title">Mi saldo</p>
+                                    </div>
+                                    <div>
+                                        <p class="subtitle">${{ userCard.balance | number: '1.2-2' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <div>
+                                        Logo circular
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 mt-3 mb-3 d-flex justify-content-end card-info">
+                            <div>
+                                <p class="subtitle">{{ lastFourNumbersInCard }}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex card-info">
+                            <div>
+                                <p class="title">Titular tarjeta</p>
+                                <p class="subtitle">{{ cardholder }}</p>
+                            </div>
+                            <div class="ms-3">
+                                <p class="title">Valida hasta</p>
+                                <p class="subtitle">{{ validUntilFormated }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-4 ms-2 revenue-card">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="d-flex cards-operations-content">
+                                <div class="align-self-center">
+                                    <i class="bi bi-cash-stack"></i>
+                                </div>
+                                <div class="ms-2">
+                                    <p class="title">Ingresos</p>
+                                    <p class="subtitle">$ {{ incomeBalance | number: '1.2-2' }}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <small>
+                                    Logo
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex align-items-end">
+                            Grafico
+                        </div>
+                    </div>
+                </div>
+                <div class="col ms-2 expense-card">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="d-flex cards-operations-content">
+                                <div class="align-self-center">
+                                    <i class="bi bi-cash-stack"></i>
+                                </div>
+                                <div class="ms-2">
+                                    <p class="title">Egresos</p>
+                                    <p class="subtitle">$ {{ outFlowBalance | number: '1.2-2'}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <small>
+                                    Logo
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex align-items-end">
+                            <div>
+                                Grafico
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-3 charts">
+            <div class="row d-flex justify-content-between border-chart">
+                <div class="col">
+                    <div class="balance">
+                        <h1>Balance</h1>
+                    </div>
+                    <div *ngIf="labels.length > 0">
+                        <app-balance-chart [labels]="labels" [income]="income"
+                            [expenses]="expenses"></app-balance-chart>
+                    </div>
+                </div>
+                <div class="col ms-2">
+                    <div class="transactions">
+                        <div>
+                            <h1>Ultimas transacciones</h1>
+                        </div>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between mt-2"
+                                *ngFor="let transaction of userTransactions | filter: currentPage let i = index">
+                                <div>
+                                    <div
+                                        *ngIf="transaction.idReceiverAccount == userAccount.idAccount; else withdrawal ">
+                                        <i class="bi bi-arrow-down-left-circle-fill cash-inflow"></i>
+                                    </div>
+                                    <ng-template #withdrawal>
+                                        <i class="bi bi-arrow-up-right-circle-fill cash-outflow"></i>
+                                    </ng-template>
+                                </div>
+                                <div>
+                                    <div *ngIf="transaction.idReceiverAccount == userAccount.idAccount">
+                                        {{ userNamesTransactions[transaction.idSenderAccount] }}
+                                    </div>
+                                    <div *ngIf="transaction.idSenderAccount == userAccount.idAccount">
+                                        {{ userNamesTransactions[transaction.idReceiverAccount] }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>${{ transaction.amount | number: '1.2-2' }}</p>
+                                </div>
+                                <div>
+                                    <p> {{ transaction.date }}</p>
+                                </div>
+                                <div>
+                                    <div *ngIf="transaction.status == statusCompleted">
+                                        <p class="status-completed">{{ transaction.status }}</p>
+                                    </div>
+                                    <div *ngIf="transaction.status == statusCanceled">
+                                        <p class="status-canceled">{{ transaction.status }}</p>
+                                    </div>
+                                    <div *ngIf="transaction.status == statusPending">
+                                        <p class="status-pending">{{ transaction.status }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots options"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between align-items-center pagination">
+                                <div>
+                                    <div *ngIf="(currentPage * pageSize) < userTransactions.length; else lastPage">
+                                        <p>{{currentPage * pageSize}} de {{userTransactions.length}}</p>
+                                    </div>
+                                    <ng-template #lastPage>
+                                        <p>{{userTransactions.length}} de {{userTransactions.length}}</p>
+                                    </ng-template>
+                                </div>
+                                <div>
+                                    <div class="pagination-options">
+                                        <div>
+                                            <i class="bi bi-caret-left-fill" (click)="previousPage()"></i>
+                                        </div>
+                                        <div class="ms-2 me-2" *ngFor="let pageNumber of generatePageNumbers()">
+                                            <p>
+                                                {{ pageNumber }}
+                                            </p>
+
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-caret-right-fill" (click)="nextPage()"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-12 mt-3" style="border: 2px solid;">
+
+        </div> -->
+    </div>
+</div>

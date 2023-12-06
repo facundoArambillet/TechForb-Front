@@ -1,0 +1,30 @@
+.row {
+    height: 100vh;
+    text-align: center;
+}
+.row .col-12:nth-child(n + 2) {
+    background-color: #D8D8D8;
+}
+.status-number {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.status-number p {
+    margin: 0px;
+    height: 233px;
+    font-size: 200px;
+    color: #cfcfcf;
+    font-weight: bold;
+}
+.btn-not-found button{
+    border-radius: 20px;
+}
+.title-not-found h1 {
+    font-size: 65px;
+    font-weight: 300;
+}
+.text-not-found p {
+    font-size: 24px;
+    font-weight: bold;
+}

@@ -1,0 +1,92 @@
+section .row {
+    height: 100vh;
+}
+article.col {
+    display: flex;
+    justify-content: center;
+}
+.welcome-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-title h1 {
+    color: #4A4A4A;
+}
+.logo img {
+    filter: grayscale(100%);
+}
+.outstanding {
+    font-weight: bold;
+    color: #31365D;
+}
+.container {
+    padding: 0 60px;
+}
+.form-login {
+    margin-top: 50px;
+}
+.form-select {
+    --bs-form-select-bg-img: none;
+}
+.form-inputs {
+    border: none;
+    border-bottom: 1px solid #53597D;
+    border-radius: 0px;
+    background-color: #353A60;
+    color: #969DB6;
+    padding: 0px 0px 10px 0px;
+}
+.form-inputs:focus {
+    box-shadow: none;
+}
+.login {
+    border: 3px solid #4C70A1;
+    background-color: #353A60;
+    color: #DCDEF7;
+}
+.form-label {
+    font-weight: bold;
+}
+.btn-action button {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    color: #353A60;
+}
+.virtual-keybord {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+}
+.register-option {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+.register-option p {
+    margin: 0;
+}
+.register-option a {
+    text-decoration: none;
+    color: #DCDEF7;
+}
+.register-option a:hover {
+    color: #949494;
+}
+
+@media(max-width: 850px) {
+    .welcome-title h1 {
+        font-size: 31px;
+    }
+}
+@media(max-width: 767px) {
+    .row >article:nth-child(1) {
+        display: none;
+    }
+}
+@media(max-width: 375px) {
+    .logo {
+        display: none;
+    }
+}
