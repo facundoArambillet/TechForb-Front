@@ -3,12 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../models/menu-item/menu-item';
 import { AuthService } from './auth.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuItemService{
-  private baseUrl: string =  "http://localhost:8080/techforb/menu-item";
   private authService = inject(AuthService);
 
   constructor(private http: HttpClient) { }
@@ -17,18 +17,18 @@ export class MenuItemService{
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<MenuItem[]>(`${this.baseUrl}`, {headers});
+    return this.http.get<MenuItem[]>(`${environment.apiUrl}`, {headers});
   }
   public createItem(menuItem: MenuItem): Observable<MenuItem> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.post<MenuItem>(`${this.baseUrl}`, menuItem, {headers});
+    return this.http.post<MenuItem>(`${environment.apiUrl}`, menuItem, {headers});
   }
   public deleteItem(idItem: number): Observable<MenuItem> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
     
-    return this.http.delete<MenuItem>(`${this.baseUrl}/${idItem}`, {headers});
+    return this.http.delete<MenuItem>(`${environment.apiUrl}/${idItem}`, {headers});
   }
 }
