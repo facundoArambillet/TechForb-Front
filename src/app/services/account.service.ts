@@ -17,7 +17,7 @@ export class AccountService {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<AccountDetailDTO>(`${environment.apiUrl}/byUser/${documentNumber}`, {headers});
+    return this.http.get<AccountDetailDTO>(`${environment.apiUrl}/account/byUser/${documentNumber}`, {headers});
   }
 
 }

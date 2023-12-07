@@ -20,43 +20,43 @@ export class TransactionService{
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/${idAccount}`, {headers});
+    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/transaction/${idAccount}`, {headers});
   }
   public getReceiverTransactionsByAccount(idAccount: number): Observable<TransactionDTO[]> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/receiver-transaction/${idAccount}`, {headers});
+    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/transaction/receiver-transaction/${idAccount}`, {headers});
   }
   public getSenderTransactionsByAccount(idAccount: number): Observable<TransactionDTO[]> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/sender-transaction/${idAccount}`, {headers});
+    return this.http.get<TransactionDTO[]>(`${environment.apiUrl}/transaction/sender-transaction/${idAccount}`, {headers});
   }
   public getTransactionWeek(idAccount: number): Observable<TransactionReponseChartDTO[]> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<TransactionReponseChartDTO[]>(`${environment.apiUrl}/week/${idAccount}`, {headers});
+    return this.http.get<TransactionReponseChartDTO[]>(`${environment.apiUrl}/transaction/week/${idAccount}`, {headers});
   }
   public getLatestTransactions(idAccount: number): Observable<Transaction[]> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<Transaction[]>(`${environment.apiUrl}/latest/${idAccount}`, {headers});
+    return this.http.get<Transaction[]>(`${environment.apiUrl}/transaction/latest/${idAccount}`, {headers});
   }
   public getIncomeBalanceByAccount(idAccount: number): Observable<number> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<number>(`${environment.apiUrl}/balance-income/${idAccount}`, {headers});
+    return this.http.get<number>(`${environment.apiUrl}/transaction/balance-income/${idAccount}`, {headers});
   }
   public getOutflowBalanceByAccount(idAccount: number): Observable<number> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<number>(`${environment.apiUrl}/balance-outflow/${idAccount}`, {headers});
+    return this.http.get<number>(`${environment.apiUrl}/transaction/balance-outflow/${idAccount}`, {headers});
   }
   public makeTransaction(transaction: TransactionDTO): Observable<TransactionDTO> {
     const token: string | null = this.authService.getToken();
@@ -68,12 +68,12 @@ export class TransactionService{
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.post<TransactionDepositWithdrawalDTO>(`${environment.apiUrl}/deposit`, transaction, {headers});
+    return this.http.post<TransactionDepositWithdrawalDTO>(`${environment.apiUrl}/transaction/deposit`, transaction, {headers});
   }
   public makeWithdrawal(transaction: TransactionDepositWithdrawalDTO): Observable<TransactionDepositWithdrawalDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.post<TransactionDepositWithdrawalDTO>(`${environment.apiUrl}/withdrawal`, transaction, {headers});
+    return this.http.post<TransactionDepositWithdrawalDTO>(`${environment.apiUrl}/transaction/withdrawal`, transaction, {headers});
   }
 }

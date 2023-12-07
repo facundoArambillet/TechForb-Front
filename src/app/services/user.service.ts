@@ -21,30 +21,30 @@ export class UserService {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<UserDTO>(`${environment.apiUrl}/${idUser}`, {headers});
+    return this.http.get<UserDTO>(`${environment.apiUrl}/user/${idUser}`, {headers});
   }
   public getByDocumentNumber(documentNumber: number): Observable<UserDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<UserDTO>(`${environment.apiUrl}/document-number/${documentNumber}`, {headers});
+    return this.http.get<UserDTO>(`${environment.apiUrl}/user/document-number/${documentNumber}`, {headers});
   }
   public getByAccount(idAccount: number): Observable<UserDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<UserDTO>(`${environment.apiUrl}/by-account/${idAccount}`, {headers});
+    return this.http.get<UserDTO>(`${environment.apiUrl}/user/by-account/${idAccount}`, {headers});
   }
   public register(userCreateDTO: UserCreateDTO): Observable<UserDTO> {
-    return this.http.post<UserDTO>(`${environment.apiUrl}/register`, userCreateDTO);
+    return this.http.post<UserDTO>(`${environment.apiUrl}/user/register`, userCreateDTO);
   }
   public login(userLogin: UserLoginDTO): Observable<Token> {
-    return this.http.post<Token>(`${environment.apiUrl}/login`, userLogin);
+    return this.http.post<Token>(`${environment.apiUrl}/user/login`, userLogin);
   }
   public deleteUser(idUser: number): Observable<UserDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.delete<UserDTO>(`${environment.apiUrl}/${idUser}`, {headers});
+    return this.http.delete<UserDTO>(`${environment.apiUrl}/user/${idUser}`, {headers});
   }
 }
