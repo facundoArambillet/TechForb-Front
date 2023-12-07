@@ -17,18 +17,18 @@ export class MenuItemService{
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<MenuItem[]>(`${environment.apiUrl}`, {headers});
+    return this.http.get<MenuItem[]>(`${environment.apiUrl}/menu-item`, {headers});
   }
   public createItem(menuItem: MenuItem): Observable<MenuItem> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.post<MenuItem>(`${environment.apiUrl}`, menuItem, {headers});
+    return this.http.post<MenuItem>(`${environment.apiUrl}/menu-item`, menuItem, {headers});
   }
   public deleteItem(idItem: number): Observable<MenuItem> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
     
-    return this.http.delete<MenuItem>(`${environment.apiUrl}/${idItem}`, {headers});
+    return this.http.delete<MenuItem>(`${environment.apiUrl}/menu-item/${idItem}`, {headers});
   }
 }

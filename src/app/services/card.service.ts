@@ -18,42 +18,42 @@ export class CardService {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<Card[]>(`${environment.apiUrl}`, {headers});
+    return this.http.get<Card[]>(`${environment.apiUrl}/card`, {headers});
   }
   public getById(idCard: number): Observable<Card> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<Card>(`${environment.apiUrl}/${idCard}`, {headers});
+    return this.http.get<Card>(`${environment.apiUrl}/card/${idCard}`, {headers});
   }
   public getByIdAccount(idAccount: number): Observable<CardDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<CardDTO>(`${environment.apiUrl}/byAccount/${idAccount}`, {headers});
+    return this.http.get<CardDTO>(`${environment.apiUrl}/card/byAccount/${idAccount}`, {headers});
   }
   public getByUserDocument(userDocument: number): Observable<CardDTO> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<CardDTO>(`${environment.apiUrl}/byUser/${userDocument}`, {headers})
+    return this.http.get<CardDTO>(`${environment.apiUrl}/card/byUser/${userDocument}`, {headers})
   }
   public getBalance(idCard: number): Observable<number> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.get<number>(`${environment.apiUrl}/balance/${idCard}`, {headers});
+    return this.http.get<number>(`${environment.apiUrl}/card/balance/${idCard}`, {headers});
   }
   public createCard(card: Card): Observable<Card> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.post<Card>(`${environment.apiUrl}`, card, {headers});
+    return this.http.post<Card>(`${environment.apiUrl}/card`, card, {headers});
   }
   public deleteCard(idCard: number): Observable<Card> {
     const token: string | null = this.authService.getToken();
     const headers = { 'Authorization': `Bearer ${token}`};
 
-    return this.http.delete<Card>(`${environment.apiUrl}/${idCard}`, {headers});
+    return this.http.delete<Card>(`${environment.apiUrl}/card/${idCard}`, {headers});
   }
 }

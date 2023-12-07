@@ -12,18 +12,18 @@ export class UserDocumentTypeService {
   constructor(private http: HttpClient) { }
 
   public getAll(): Observable<UserDocumentType[]> {
-    return this.http.get<UserDocumentType[]>(`${environment.apiUrl}`);
+    return this.http.get<UserDocumentType[]>(`${environment.apiUrl}/user-document-type`);
   }
   public getById(idType: number): Observable<UserDocumentType> {
-    return this.http.get<UserDocumentType>(`${environment.apiUrl}/${idType}`);
+    return this.http.get<UserDocumentType>(`${environment.apiUrl}/user-document-type/${idType}`);
   }
   public getByType(type: string): Observable<UserDocumentType> {
-    return this.http.get<UserDocumentType>(`${environment.apiUrl}/type/${type}`)
+    return this.http.get<UserDocumentType>(`${environment.apiUrl}/user-document-type/type/${type}`)
   }
   public createDocumentType(userDocumentType: UserDocumentType): Observable<UserDocumentType> {
-    return this.http.post<UserDocumentType>(`${environment.apiUrl}`, userDocumentType);
+    return this.http.post<UserDocumentType>(`${environment.apiUrl}/user-document-type`, userDocumentType);
   }
   public deleteDocumentType(idType: number): Observable<UserDocumentType> {
-    return this.http.delete<UserDocumentType>(`${environment.apiUrl}/${idType}`);
+    return this.http.delete<UserDocumentType>(`${environment.apiUrl}/user-document-type/${idType}`);
   }
 }
